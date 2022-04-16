@@ -81,6 +81,7 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 ## License
 MIT License
 
+Copyright (c) 2022 SeppeM (https://github.com/MaxieNL/)
 Copyright (c) 2018 SeppeM (https://github.com/SeppeM/)
 Copyright (c) 2016 yo-less (https://github.com/yo-less/)
 
