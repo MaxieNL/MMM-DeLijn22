@@ -1,0 +1,10 @@
+{
+  "LINE": "LijnNummer",
+  "DESTINATION": "Bestemming",
+  "DEPARTURE": "Vertrek",
+  "NOW": "nu",
+  "TIME": "",
+  "NO-TRAMS": "Geen verbinding beschikbaar",
+  "MINUTE": "minuut",
+  "MINUTES": "minuten"
+}
