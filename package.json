@@ -1,0 +1,27 @@
+{
+  "name": "MMM-DeLijn22",
+  "version": "1.0.3",
+  "description": "MagicMirror² module - station monitor for the Karlsruhe public transport system (KVV)",
+  "repository": {
+    "type": "git",
+    "url": "git+hhttps://github.com/MaxieNL/MMM-DeLijn22.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "DeLijn",
+    "Flanders",
+    "magic mirror",
+    "smart mirror",
+    "public transport",
+    "local transit"
+  ],
+  "author": "DeEchteBelg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxieNL/MMM-DeLijn22/issues"
+  },
+  "homepage": "https://github.com/MaxieNL/MMM-DeLijn22#readme",
+  "dependencies": {
+    "request": "^2.74.0"
+  }
+}
