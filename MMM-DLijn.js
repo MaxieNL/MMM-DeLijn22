@@ -3,7 +3,7 @@
  *
  * By yo-less / https://github.com/yo-less
  * MIT Licensed.
- * 
+ *
  * v1.0.3
  */
 
@@ -34,7 +34,7 @@ Module.register("MMM-DLijn", {
 
     start: function () {
         var self = this;
-        Log.info("Starting module: " + this.name);
+        this.sendSocketNotification("LOG", "Logging this");
         this.sendSocketNotification("CONFIG", this.config);
         setInterval(
             function () {
@@ -45,22 +45,25 @@ Module.register("MMM-DLijn", {
 
 
     socketNotificationReceived: function (notification, payload) {
-        if (notification === "TRAMS" + this.config.halteNummer) {
+        this.sendSocketNotification("LOG", `Notification: ${notification}, Haltenummer: ${this.config.halteNummer}, Match: ${notification === "TRAMS" + this.config.halteNummer}`);
+
+        if (notification === "TRAMS" + this.config.halteNummer.toString()) {
             this.kvv_data = payload;
             this.config.stopName = payload.ritDoorkomsten.bestemming;
+            this.sendSocketNotification("LOG", "updateDom");
             this.updateDom();
         }
     },
 
     getDom: function () {
-
+        this.sendSocketNotification("LOG", "getDom");
 
         // Auto-create MagicMirror header
 
         var wrapper = document.createElement("div");
-        // var header = document.createElement("header");
-        // header.innerHTML = this.config.stopName;
-        // wrapper.appendChild(header);
+        var header = document.createElement("header");
+        header.innerHTML = this.config.stopName;
+        wrapper.appendChild(header);
 
 
         // Loading data notification
@@ -70,9 +73,10 @@ Module.register("MMM-DLijn", {
             text.innerHTML = this.translate("LOADING");
             text.className = "small dimmed";
             wrapper.appendChild(text);
+            log.info("No data")
 
         } else {
-
+            log.info("We heb")
             // Start creating connections table
 
             var table = document.createElement("table");
@@ -165,6 +169,7 @@ Module.register("MMM-DLijn", {
     },
 
     createLabelRow: function () {
+        log.info("Making the label")
         var labelRow = document.createElement("tr");
 
         var lineLabel = document.createElement("th");
@@ -228,8 +233,8 @@ Module.register("MMM-DLijn", {
 
         var departure = document.createElement("td");
         departure.className = "departure";
-        if (data["real-timeTijdstip"] - Date == "0") {
-            departure.innerHTML = this.translate("NOW"); 
+        if (data["real-timeTijdstip"] == "0") {
+            departure.innerHTML = this.translate("NOW");
         } else if (data.vertrekTijd.charAt(2) == ":") {	// Append "Uhr" to data given in "hh:mm" format if config language is German
             departure.innerHTML = data.vertrekTijd.slice(0, 11) + this.translate("TIME");
         } else if (data.vertrekTijd.substr(data.vertrekTijd.length - 5) == "1 min") {
